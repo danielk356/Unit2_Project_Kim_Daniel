@@ -10,10 +10,10 @@ public class EquationRunner {
         String point2 = s.nextLine();
 
         //pick out the actual coordinates from the string
-        String x1 = point1.substring(1,2);
-        String y1 = point1.substring(3,4);
-        String x2 = point2.substring(1,2);
-        String y2 = point2.substring(3,4);
+        String x1 = point1.substring(1, point1.indexOf(","));
+        String y1 = point1.substring(point1.indexOf(",") + 1, point1.length() - 1);
+        String x2 = point2.substring(1, point2.indexOf(","));
+        String y2 = point2.substring(point2.indexOf(",") + 1, point2.length() - 1);
 
         //parse the coordinates into integers
         int x1Num = Integer.parseInt(x1);
@@ -23,7 +23,7 @@ public class EquationRunner {
 
         //make an instance of the LinearEquation class
         LinearEquation l = new LinearEquation(x1Num, y1Num, x2Num, y2Num);
-        
+        System.out.println(l);
 
 
     }
