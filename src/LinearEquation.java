@@ -36,14 +36,22 @@ public class LinearEquation {
         }
 
         public double calculateYIntercept () {
-            int y = y1;
-            double mx = (double) (x2 - x1) / (y2 - y1) * x1;
-            double b = Math.round((y - mx) * 100.0) / 100.0;
+            double mx = (double) (y2 - y1) / (x2 - x1) * x1;
+            double b = Math.round((y1 - mx) * 100.0) / 100.0;
             return b;
         }
 
         public String createLinearEquation () {
-            String equation = "y = " + slopeCalculator() + "x + " + calculateYIntercept();
+            String equation = null;
+            if (calculateYIntercept() > 0) {
+                equation = "y = " + slopeCalculator() + "x + " + calculateYIntercept();
+            } else if (calculateYIntercept() < 0) {
+                double b = calculateYIntercept() * -1;
+                equation = "y = " + slopeCalculator() + "x - " + b;
+            } else {
+                equation = "y = " + slopeCalculator() + "x";
+            }
+
             return equation;
         }
 
@@ -63,7 +71,7 @@ public class LinearEquation {
         }
 
         public double calculateThirdPoint ( double x3){
-            double y3 = Math.round((x3 * (double) (x2 - x1) / (y2 - y1) + calculateYIntercept()) * 100.0) / 100.0;
+            double y3 = Math.round((x3 * (double) (y2 - y1) / (x2 - x1) + calculateYIntercept()) * 100.0) / 100.0;
             return y3;
         }
 

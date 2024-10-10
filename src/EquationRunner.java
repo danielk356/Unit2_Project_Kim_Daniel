@@ -25,6 +25,12 @@ public class EquationRunner {
         LinearEquation l = new LinearEquation(x1Num, y1Num, x2Num, y2Num);
         System.out.println(l);
 
+        // stores x3 and find third point
+        System.out.print("Enter a third x-value: ");
+        String x3 = s.nextLine();
+        double x3Num = Double.parseDouble(x3);
+        double y3 = l.calculateThirdPoint(x3Num);
+        System.out.println("Solved coordinate point is: " + "(" + x3Num + "," + y3 + ")");
 
     }
 }
