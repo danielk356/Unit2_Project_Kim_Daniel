@@ -1,0 +1,50 @@
+Design Document
+
+LinearEquation class
+
+Instance Variables:
+private int x1 - This variable represents the x-coordinate of the first point
+private int y1 - y-coordinate of the first point
+private int x2 - x-coordinate of the second point
+private int y2 - y-coordinate of the second point
+
+Constructor
+	public LinearEquation(int x1, int y1, int x2, int y2)
+
+Methods
+
+public String calculateSlope()
+This method uses the coordinates to find the rise and run of the slope. Then I use conditions to format the slope into either an integer or a fraction.
+
+public double calculateYIntercept()
+This method finds the y-intercept of the line with the slope and one point using the formula: y=mx+b. Returns the y-intercept.
+
+public String createLinearEquation()
+This method uses the calculateSlope() and calculateYIntercept() methods to create an equation in slope intercept form. There will be conditions to format the y-intercept and the “-1” and “1” slopes correctly into the equation.
+
+public String toString()
+This method will display all relevant information about this instance including:
+X and Y coordinate information
+Slope Intercept Form equation
+Distance between the two points
+Slope of line
+Y-intercept
+
+public double calculateThirdPoint(double x3)
+This method will use x3 provided by the user. X3 will be multiplied by the slope and the y-intercept will be added to the product to find the y-coordinate. Returns the y-coordinate.
+
+public double calculateDistance()
+This method will calculate the distance between the first two points provided by the user and return the result.
+
+EquationRunner.java
+
+Step 1: Ask user to enter first coordinate point
+Step 2: Ask user to enter second coordinate point
+Step 3: Store each of the two points in a variable as a string.
+Step 4: Use the substring method to pick out the individual x and y-coordinates and store them in variables.
+Step 4: Parse these coordinates into integers.
+Step 5: Make an instance of the LinearEquation class using the constructor method.
+Step 6: Use println and the object’s name in the parameter to print out all the information of the points.
+Step 7: Ask the user for a third x-coordinate
+Step 8: Call on the calculateThirdPoint method and store the result in a string variable.
+Step 9: Print out the solved point.

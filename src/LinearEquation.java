@@ -4,6 +4,7 @@ public class LinearEquation {
     private int x2;
     private int y2;
 
+    //constructor method
     public LinearEquation(int x1, int y1, int x2, int y2) {
         this.x1 = x1;
         this.y1 = y1;
@@ -17,11 +18,8 @@ public class LinearEquation {
             int rise = y2 - y1;
             if (rise % run == 0) {
                 slope = Integer.toString(rise / run);
-            } else if (rise / run == 1) {
-                slope = "";
-            } else if (rise / run == -1) {
-                slope = "-";
-            } else {
+            }
+            if (rise % run !=0){
                 if (rise > 0 && run < 0) {
                     run = run * -1;
                     rise = rise * -1;
@@ -29,6 +27,8 @@ public class LinearEquation {
                 } else if (rise < 0 && run < 0) {
                     run = run * -1;
                     rise = rise * -1;
+                    slope = rise + "/" + run;
+                } else if (rise > 0 && run > 0){
                     slope = rise + "/" + run;
                 }
             }
@@ -43,15 +43,39 @@ public class LinearEquation {
 
         public String createLinearEquation () {
             String equation = null;
+            String slope = slopeCalculator();
             if (calculateYIntercept() > 0) {
-                equation = "y = " + slopeCalculator() + "x + " + calculateYIntercept();
+                if (slope.indexOf("/") == -1 && slope.indexOf("-1") == 0) {
+                    slope = "-";
+                    equation = "y = " + slope + "x + " + calculateYIntercept();
+                } else if (slope.indexOf("/") == -1 && slope.indexOf("1") == 0) {
+                    slope = "";
+                    equation = "y = " + slope + "x + " + calculateYIntercept();
+                } else {
+                    equation = "y = " + slope + "x + " + calculateYIntercept();
+                }
             } else if (calculateYIntercept() < 0) {
                 double b = calculateYIntercept() * -1;
-                equation = "y = " + slopeCalculator() + "x - " + b;
+                if (slope.indexOf("/") == -1 && slope.indexOf("-1") == 0) {
+                    slope = "-";
+                    equation = "y = " + slope + "x - " + b;
+                } else if (slope.indexOf("/") == -1 && slope.indexOf("1") == 0) {
+                    slope = "";
+                    equation = "y = " + slope + "x - " + b;
+                } else {
+                    equation = "y = " + slope + "x - " + b;
+                }
             } else {
-                equation = "y = " + slopeCalculator() + "x";
+                if (slope.indexOf("/") == -1 && slope.indexOf("-1") == 0) {
+                    slope = "-";
+                    equation = "y = " + slope + "x";
+                } else if (slope.indexOf("/") == -1 && slope.indexOf("1") == 0) {
+                    slope = "";
+                    equation = "y = " + slope + "x";
+                } else {
+                    equation = "y = " + slope + "x";
+                }
             }
-
             return equation;
         }
 
@@ -71,7 +95,7 @@ public class LinearEquation {
         }
 
         public double calculateThirdPoint ( double x3){
-            double y3 = Math.round((x3 * (double) (y2 - y1) / (x2 - x1) + calculateYIntercept()) * 100.0) / 100.0;
+            double y3 = Math.round((x3 * ((double) (y2 - y1) / (x2 - x1)) + calculateYIntercept()) * 100.0) / 100.0;
             return y3;
         }
 
